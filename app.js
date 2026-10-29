@@ -242,13 +242,16 @@ function pickWeighted(pool, n, exclude = [], lvl = 1) {
   }).sort((a, b) => a.score - b.score);
   // 進階題有上限，其他題（例如手寫生字）照常出：★★ 最多 3 成、★★★ 最多 5 成
   const cap = lvl >= 3 ? Math.ceil(n * 0.5) : lvl === 2 ? Math.ceil(n * 0.3) : 0;
+  const wcap = Math.round(n * 0.3); // 手寫生字題每回最多 3 成（10 題最多 3 題）
   const out = [];
-  let adv = 0;
+  let adv = 0, wr = 0;
   for (const x of sorted) {
     if (out.length >= n) break;
     const isAdv = (x.q.lv || 1) >= 2;
     if (isAdv && adv >= cap) continue;
+    if (x.q.t === 'write' && wr >= wcap) continue;
     if (isAdv) adv++;
+    if (x.q.t === 'write') wr++;
     out.push(x.q);
   }
   for (const x of sorted) { if (out.length >= n) break; if (!out.includes(x.q)) out.push(x.q); } // 題目不夠時再補
