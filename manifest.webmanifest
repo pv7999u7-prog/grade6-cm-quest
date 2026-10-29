@@ -1,0 +1,14 @@
+{
+  "name": "六年級國數闖關王",
+  "short_name": "六年級國數闖關王",
+  "lang": "zh-Hant",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fdf0f5",
+  "theme_color": "#fdf0f5",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
